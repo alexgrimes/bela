@@ -88,10 +88,12 @@ void render(BelaContext *context, void *userData)
     	float out = 0;
 	
 	float input0 = analogRead(context, n/2, 0);
+	float input1 = analogRead(context, n/2, 1);
+	float input2 = analogRead(context, n/2, 2);
 	
-	float frequency = map(input0, 0, 3.3 / 4.096, 20, 3000);
-	float amplitudeDB = map(input0, 0, 3.3 / 4.096, -40, -6);
-	float detune = map(input0, 0, 3.3 / 4.096, 0, 0.05);
+	float frequency = 55.0 * powf(2.0, input0 * 4.096); 
+	float amplitudeDB = map(input1, 0, 3.3 / 4.096, -40, -6);
+	float detune = map(input2, 0, 3.3 / 4.096, 0, 0.05);
 	
 	
 	float amplitude = powf(10.0, amplitudeDB / 20);		// Convert dB to linear amplitude
