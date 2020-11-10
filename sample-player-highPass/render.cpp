@@ -23,8 +23,8 @@ MonoFilePlayer gPlayer;
 // TODO: declare global variable(s) to keep track of filter state
 // this holds x[n-1]
 
-float gLastOutput = 0;
-float gAlpha = 0.99;
+//Filter state
+float gLastSample = 0;
 
 bool setup(BelaContext *context, void *userData)
 {
@@ -48,8 +48,8 @@ void render(BelaContext *context, void *userData)
         float in = gPlayer.process();
 
         // y[n] = alpha * y[n-1] + 1 - alpha) * x[n]
-        float out = gAlpha * gLastOutput + (1.0 - gAlpha) * in;
-        gLastOutput = out;
+        float out = in - gLastSample;
+        gLastSample = out;
 
     	for(unsigned int channel = 0; channel < context->audioOutChannels; channel++) {
 			// Write the sample to every audio output channel
