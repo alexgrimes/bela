@@ -1,0 +1,5 @@
+-include libraries/AudioFile/build/Makefile.link
+-include libraries/Fft/build/Makefile.link
+-include libraries/Scope/build/Makefile.link
+-include libraries/math_neon/build/Makefile.link
+-include libraries/ne10/build/Makefile.link
